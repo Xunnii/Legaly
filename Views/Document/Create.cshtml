@@ -1,0 +1,142 @@
+@model Legaly.Web.Models.ViewModels.DocumentFormViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Buat Dokumen";
+}
+
+<div class="mb-4">
+    <h4 class="mb-1">Buat Surat Perjanjian Jual Beli</h4>
+    <p class="text-muted mb-0">Isi data penjual, pembeli, dan kendaraan untuk menghasilkan surat perjanjian.</p>
+</div>
+
+<form asp-controller="Document" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    @* Section 1: Penjual *@
+    <div class="card mb-4">
+        <div class="card-header">
+            <h6 class="mb-0">Data Penjual</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NamaPenjual" class="form-label">Nama Penjual <span class="text-danger">*</span></label>
+                    <input asp-for="NamaPenjual" class="form-control" placeholder="Nama lengkap penjual" />
+                    <span asp-validation-for="NamaPenjual" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NikPenjual" class="form-label">NIK Penjual <span class="text-danger">*</span></label>
+                    <input asp-for="NikPenjual" class="form-control" placeholder="16 digit angka" maxlength="16" />
+                    <span asp-validation-for="NikPenjual" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="AlamatPenjual" class="form-label">Alamat Penjual <span class="text-danger">*</span></label>
+                <textarea asp-for="AlamatPenjual" class="form-control" rows="3" placeholder="Alamat lengkap penjual"></textarea>
+                <span asp-validation-for="AlamatPenjual" class="text-danger small"></span>
+            </div>
+        </div>
+    </div>
+
+    @* Section 2: Pembeli *@
+    <div class="card mb-4">
+        <div class="card-header">
+            <h6 class="mb-0">Data Pembeli</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NamaPembeli" class="form-label">Nama Pembeli <span class="text-danger">*</span></label>
+                    <input asp-for="NamaPembeli" class="form-control" placeholder="Nama lengkap pembeli" />
+                    <span asp-validation-for="NamaPembeli" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NikPembeli" class="form-label">NIK Pembeli <span class="text-danger">*</span></label>
+                    <input asp-for="NikPembeli" class="form-control" placeholder="16 digit angka" maxlength="16" />
+                    <span asp-validation-for="NikPembeli" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="AlamatPembeli" class="form-label">Alamat Pembeli <span class="text-danger">*</span></label>
+                <textarea asp-for="AlamatPembeli" class="form-control" rows="3" placeholder="Alamat lengkap pembeli"></textarea>
+                <span asp-validation-for="AlamatPembeli" class="text-danger small"></span>
+            </div>
+        </div>
+    </div>
+
+    @* Section 3: Kendaraan, Harga, dan Tanggal *@
+    <div class="card mb-4">
+        <div class="card-header">
+            <h6 class="mb-0">Data Kendaraan, Harga &amp; Tanggal</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="MerkMotor" class="form-label">Merk Motor <span class="text-danger">*</span></label>
+                    <input asp-for="MerkMotor" class="form-control" placeholder="Contoh: Honda" />
+                    <span asp-validation-for="MerkMotor" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="TipeMotor" class="form-label">Tipe Motor <span class="text-danger">*</span></label>
+                    <input asp-for="TipeMotor" class="form-control" placeholder="Contoh: Beat FI" />
+                    <span asp-validation-for="TipeMotor" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="TahunMotor" class="form-label">Tahun Motor <span class="text-danger">*</span></label>
+                    <input asp-for="TahunMotor" class="form-control" type="number" placeholder="Contoh: 2020" min="1900" />
+                    <span asp-validation-for="TahunMotor" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="WarnaMotor" class="form-label">Warna Motor <span class="text-danger">*</span></label>
+                    <input asp-for="WarnaMotor" class="form-control" placeholder="Contoh: Hitam" />
+                    <span asp-validation-for="WarnaMotor" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="NomorPolisi" class="form-label">Nomor Polisi <span class="text-danger">*</span></label>
+                    <input asp-for="NomorPolisi" class="form-control" placeholder="Contoh: B 1234 ABC" />
+                    <span asp-validation-for="NomorPolisi" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="NomorBPKB" class="form-label">Nomor BPKB <span class="text-danger">*</span></label>
+                    <input asp-for="NomorBPKB" class="form-control" placeholder="Nomor BPKB" />
+                    <span asp-validation-for="NomorBPKB" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="NomorSTNK" class="form-label">Nomor STNK <span class="text-danger">*</span></label>
+                    <input asp-for="NomorSTNK" class="form-control" placeholder="Nomor STNK" />
+                    <span asp-validation-for="NomorSTNK" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Harga" class="form-label">Harga (Rp) <span class="text-danger">*</span></label>
+                    <input asp-for="Harga" class="form-control" type="number" step="0.01" min="1" placeholder="Contoh: 15000000" />
+                    <span asp-validation-for="Harga" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="TanggalPerjanjian" class="form-label">Tanggal Perjanjian <span class="text-danger">*</span></label>
+                    <input asp-for="TanggalPerjanjian" class="form-control" type="date" />
+                    <span asp-validation-for="TanggalPerjanjian" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="TempatPerjanjian" class="form-label">Tempat Perjanjian <span class="text-danger">*</span></label>
+                    <input asp-for="TempatPerjanjian" class="form-control" placeholder="Contoh: Jakarta" />
+                    <span asp-validation-for="TempatPerjanjian" class="text-danger small"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Buat Dokumen</button>
+        <a href="/" class="btn btn-secondary">Batal</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

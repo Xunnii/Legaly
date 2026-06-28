@@ -1,0 +1,68 @@
+@model IEnumerable<Legaly.Web.Models.Entities.Template>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Daftar Template";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Daftar Template</h4>
+    <a href="/template/create" class="btn btn-primary">Tambah Template Baru</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="alert">
+        Belum ada template.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>CreatedAt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int no = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@no</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                    <td>
+                        <a href="/template/edit/@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <form method="post" action="/template/delete/@item.Id" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Yakin ingin menghapus template ini?')">
+                                Hapus
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                no++;
+            }
+        </tbody>
+    </table>
+}

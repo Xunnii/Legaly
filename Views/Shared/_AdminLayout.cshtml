@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Legaly</title>
+    <title>@ViewData["Title"] - Legaly Admin</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,22 +11,23 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom shadow-sm mb-3">
             <div class="container">
-                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Legaly</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPublic"
-                        aria-controls="navbarPublic" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand fw-bold" asp-controller="Template" asp-action="Index">Legaly Admin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin"
+                        aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarPublic">
+                <div class="collapse navbar-collapse" id="navbarAdmin">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Document" asp-action="Create">Buat Dokumen</a>
+                            <a class="nav-link" asp-controller="Template" asp-action="Index">Daftar Template</a>
                         </li>
                     </ul>
+                    <form asp-controller="Auth" asp-action="Logout" method="post" class="d-flex">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -53,7 +54,7 @@
 
     <footer class="border-top footer text-muted mt-4">
         <div class="container py-3">
-            &copy; 2026 - Legaly
+            &copy; 2026 - Legaly Admin
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
